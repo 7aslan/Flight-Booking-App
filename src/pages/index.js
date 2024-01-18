@@ -1,15 +1,15 @@
 import Header from "@/component/Header";
-import Head from "next/head";
+import Search from "@/component/Search";
 
-const Home = () =>{
-
-
+const Home = () => {
 
   return (
     <div>
-      <Header />
+      <header>
+        <Header />
+      </header>
       <main>
-        
+        <Search />
       </main>
     </div>
 
