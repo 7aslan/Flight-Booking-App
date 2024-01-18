@@ -1,8 +1,20 @@
+import Header from "@/component/Header";
+import Head from "next/head";
+
+const Home = () =>{
 
 
-export default function Home() {
+
   return (
-    <>
-    </>
-  )
-}
+    <div>
+      <Header />
+      <main>
+        
+      </main>
+    </div>
+
+  );
+
+};
+
+export default Home;
