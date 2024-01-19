@@ -10,7 +10,12 @@ const Header = () => {
   const router = useRouter();
 
   const handleContactClick = () => {
-    router.push('/#contact');
+    if (window.contactRef) {
+      window.scrollTo({
+        top: window.contactRef.offsetTop,
+        behavior: 'smooth',
+      });
+    }
   }
 
   const handleLogoClick = () => {
