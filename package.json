@@ -12,11 +12,14 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.5",
+    "autosuggest-highlight": "^3.3.4",
     "axios": "^1.6.5",
     "json-server": "^1.0.0-alpha.21",
     "next": "14.0.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-autosuggest": "^10.1.0",
+    "react-dom": "^18",
+    "react-select": "^5.8.0"
   },
   "devDependencies": {
     "eslint": "^8",
