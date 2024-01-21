@@ -1,7 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
 First, run the development server:
 
 ```bash
@@ -24,18 +20,31 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+# Flight-Booking-App
+This is a Flight Booking Front-End Project that supplies an user interface to book a flight ticket. 
+
+## Technical Background
+I have created a mock backend and mock data using json-server. When you open a new terminal on your ide and assign a port to the db.json file like that : 
+```bash
+npx json-server db.json --port 3001
+```
+That creates a backend and mock data that includes 20 different flights from 22-01-2024 to 29-02-2024. 
+There are three different endpoints that you can use the data from different addresses : 
+```bash
+http://localhost:3001/airports
+http://localhost:3001/flights
+http://localhost:3001/airlines
+```
+You can send requests using these addresses and access the data to use on the UI. 
+
+## Deficiencies
+- It doesnt have a good responsive design.
+- You can filter flights with respect to dates but not to airports.
+
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 # Flight-Booking-App
