@@ -11,7 +11,7 @@
       "id": 1,
       "departureAirportId": 1,
       "arrivalAirportId": 2,
-      "departureDate": "2024-01-21T10:00:00",
+      "departureDate": "2024-01-22T10:00:00",
       "returnDate": "2024-01-26T15:30:00",
       "airline": "TK",
       "price": 500.00

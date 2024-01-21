@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import FeaturesCarousel from './FeaturesCarousel';
 import { fetchAirports } from '@/pages/api/airports';
 import Select from 'react-select';
+import { useRouter } from 'next/router';
+
 
 const customStyles = {
     control: (provided) => ({
@@ -23,11 +24,11 @@ const customStyles = {
     }),
     input: (provided) => ({
         ...provided,
-        color: 'white', // İç yazı rengi beyaz
+        color: 'white',
     }),
     placeholder: (provided) => ({
         ...provided,
-        color: 'rgba(255, 255, 255, 0.7)', // Placeholder rengi
+        color: 'rgba(255, 255, 255, 0.7)',
     }),
 };
 
@@ -37,13 +38,13 @@ const selectMargin = {
 
 
 const Search = () => {
-    const [departureAirport, setDepartureAirport] = useState("");
-    const [arrivalAirport, setArrivalAirport] = useState('');
-    const [departureDate, setDepartureDate] = useState();
+    const [departureAirport, setDepartureAirport] = useState(null);
+    const [arrivalAirport, setArrivalAirport] = useState(null);
+    const [departureDate, setDepartureDate] = useState("");
     const [returnDate, setReturnDate] = useState('');
     const [oneWay, setOneWay] = useState(false);
-    const [flights, setFlights] = useState([]);
     const [airportOptions, setAirportOptions] = useState([]);
+    const router = useRouter();
 
 
     useEffect(() => {
@@ -58,18 +59,36 @@ const Search = () => {
         fetchData();
     }, []);
 
+
+
+    const handleDepartureAirportChange = (selectedOption) => {
+        console.log("Departure Airport Selected ( Search.js) : ", selectedOption)
+        console.log("Departure Date (Search.js): ", departureDate)
+        console.log("Arrival Date (Search.js): ", returnDate)
+        setDepartureAirport(selectedOption);
+    };
+
+    const handleArrivalAirportChange = (selectedOption) => {
+        console.log("Arrival Airport Selected ( Search.js) : ", selectedOption)
+        setArrivalAirport(selectedOption);
+    };
+
     const handleSearch = async () => {
         const queryParams = {
-            departureAirport,
-            arrivalAirport,
+            departureAirport: departureAirport?.value,
+            arrivalAirport: arrivalAirport?.value,
             departureDate,
             returnDate: oneWay ? '' : returnDate,
         };
-        // router.push(`/search?${new URLSearchParams(queryParams).toString()}`);
-        window.location.href = `/search?${new URLSearchParams(queryParams).toString()}`;
+        console.log('Query Params:', queryParams);
+        router.push({
+            pathname: '/search-results',
+            query: queryParams,
+        });
     };
 
-    console.log(airportOptions)
+
+
     return (
         <div style={{ width: '100%', margin: 'auto', display: 'flex', flexDirection: 'row', alignItems: 'left', background: `url("/airplane.jpg")`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div style={{ width: '40%', margin: '5rem 5rem 5rem 0', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
@@ -77,7 +96,8 @@ const Search = () => {
                     options={airportOptions}
                     isSearchable
                     placeholder="Departure Airport"
-                    onChange={(selectedOption) => setDepartureAirport(selectedOption)}
+                    onChange={handleDepartureAirportChange}
+                    value={departureAirport}
                     styles={customStyles}
 
                 />
@@ -85,7 +105,8 @@ const Search = () => {
                     options={airportOptions}
                     isSearchable
                     placeholder="Arrival Airport"
-                    onChange={(selectedOption) => setArrivalAirport(selectedOption)}
+                    onChange={handleArrivalAirportChange}
+                    value={arrivalAirport}
                     styles={{ ...customStyles, ...selectMargin }}
 
 
@@ -96,7 +117,7 @@ const Search = () => {
                     value={departureDate}
                     onChange={(e) => setDepartureDate(e.target.value)}
                     InputLabelProps={{ shrink: true }}
-                    style={{ marginBottom: '15px', width: '100%', border:'none' }}
+                    style={{ marginBottom: '15px', width: '100%', border: 'none' }}
                     InputProps={{ style: { color: 'white' } }}
                 />
                 {!oneWay && (
@@ -106,7 +127,7 @@ const Search = () => {
                         value={returnDate}
                         onChange={(e) => setReturnDate(e.target.value)}
                         InputLabelProps={{ shrink: true }}
-                        style={{ marginBottom: '15px', width: '100%' , border:'none'}}
+                        style={{ marginBottom: '15px', width: '100%', border: 'none' }}
                         InputProps={{ style: { color: 'white' } }}
                     />
                 )}
@@ -123,6 +144,7 @@ const Search = () => {
             </div>
             <FeaturesCarousel />
         </div>
+
     );
 };
 
