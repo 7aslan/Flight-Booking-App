@@ -1,5 +1,3 @@
-// components/SearchResults.js
-
 import React, { useEffect, useState } from 'react';
 import FlightCard from './FlightCard';
 import { getAllFlights } from '@/pages/api/flights';
@@ -22,11 +20,12 @@ const SearchResults = ({ departureAirport, arrivalAirport, departureDate, return
         const allAirports = await fetchAirports();
 
         const filteredFlights = allFlights.filter(flight =>
-          // flight.departureAirportId === parseInt(departureAirport?.value) &&
+          // flight.departureAirportId=== parseInt(departureAirport?.value) &&
           // flight.arrivalAirportId === parseInt(arrivalAirport?.value) &&
           new Date(flight.departureDate) >= new Date(departureDate) &&
           (oneWay || new Date(flight.returnDate) <= new Date(returnDate))
         );
+        console.log("Filtered Flights",filteredFlights)
 
         // sorting
         const sortedFlights = [...filteredFlights].sort((a, b) => {
