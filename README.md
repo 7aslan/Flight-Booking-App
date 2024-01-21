@@ -46,5 +46,3 @@ You can send requests using these addresses and access the data to use on the UI
 - You can filter flights with respect to dates but not to airports.
 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# Flight-Booking-App
